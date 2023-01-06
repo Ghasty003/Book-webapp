@@ -1,5 +1,7 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
+import AdminHomePage from './pages/AdminHomePage'
+import UserHomePage from './pages/UserHomePage'
 
 function App() {
   
@@ -7,7 +9,8 @@ function App() {
     <div className="App">
      <Routes>
       <Route path='/'>
-        <Route index />
+        <Route index element={<UserHomePage />} />
+        <Route path='/admin' element={<AdminHomePage />} />
       </Route>
      </Routes>
     </div>
