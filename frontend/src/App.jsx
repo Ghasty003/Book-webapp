@@ -1,10 +1,15 @@
-import { useState } from 'react'
+import React from 'react'
+import { Route, Routes } from 'react-router-dom'
 
 function App() {
   
   return (
     <div className="App">
-      Hello
+     <Routes>
+      <Route path='/'>
+        <Route index />
+      </Route>
+     </Routes>
     </div>
   )
 }
