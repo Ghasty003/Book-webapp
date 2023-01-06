@@ -1,7 +1,12 @@
 const express = require("express");
 const mongoose = require("mongoose");
 
+const bookRoute = require("./router/bookRoute");
+
 const app = express();
+
+app.use(express.json());
+app.use("/api/books", bookRoute);
 
 mongoose
   .connect("mongodb://0.0.0.0:27017/books")
