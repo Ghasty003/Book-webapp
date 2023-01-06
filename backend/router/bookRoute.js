@@ -1,13 +1,10 @@
 const express = require("express");
+const { createBook, getBooks } = require("../controller/bookController");
 
 const router = express.Router();
 
-router.get("/", (req, res) => {
-  res.status(200).json("Get request");
-});
+router.get("/", getBooks);
 
-router.post("/", (req, res) => {
-  res.status(200).json("Post request");
-});
+router.post("/", createBook);
 
 module.exports = router;
