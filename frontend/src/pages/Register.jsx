@@ -5,6 +5,12 @@ import { IoEyeOutline } from "react-icons/io5";
 import { AiOutlineMail } from "react-icons/ai";
 
 function Register() {
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [userName, setUserName] = useState("");
+
+
     const [seePass, setSeePass] = useState(false);
     const [err, setErr] = useState(false);
     const passwordInput = useRef("");
@@ -84,6 +90,24 @@ function Register() {
 
     const handleRegister = async (e) => {
         e.preventDefault()
+
+        const response = await fetch("http://localhost:4000/api/users", {
+            method: "POST",
+            body: JSON.stringify({email, password, userName}),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+        const json = await response.json();
+
+        if (!response.ok) {
+            console.log(json.error)
+            return setErr(json.error)
+        }
+
+        if (response.ok) {
+            console.log(json)
+        }
     }
 
     return (
@@ -92,18 +116,18 @@ function Register() {
                 <h2>Register your account.</h2>
                 <form className='w-full mt-4 relative' onSubmit={handleRegister}>
                     <div className='flex justify-between z-0 items-center pr-3 relative w-[85%] m-auto border border-gray rounded-md my-4 overflow-hidden'>
-                        <input ref={usernameInput} className='w-[90%] outline-none p-2' type="text" required />
+                        <input ref={usernameInput} className='w-[90%] outline-none p-2' type="text" required value={userName} onChange={e => setUserName(e.target.value)} />
                         <p ref={p0} className='absolute z-40 top-1 text-gray-500 text- left-3'>Username</p>
                         <FiUser color='white' />
                     </div>
                     <div className='flex justify-between items-center pr-3 relative w-[85%] m-auto border border-gray rounded-md my-4 overflow-hidden'>
-                        <input ref={emailInput} className='w-[90%] outline-none p-2' type="text" required />
+                        <input ref={emailInput} className='w-[90%] outline-none p-2' type="text" required value={email} onChange={e => setEmail(e.target.value)} />
                         <p ref={p1} className='absolute top-1 text-gray-500 bg-white left-3'>Email</p>
                         <AiOutlineMail color='white' />
                     </div>
 
                     <div className='flex justify-between items-center pr-3 relative w-[85%] m-auto border border-gray rounded-md overflow-hidden'>
-                        <input type="password" className='w-[90%] outline-none p-2' ref={passwordInput} required />
+                        <input type="password" className='w-[90%] outline-none p-2' ref={passwordInput} required value={password} onChange={e => setPassword(e.target.value)} />
                         <p ref={p2} className='absolute top-1 text-gray-500 bg-white left-3'>Password</p>
                         { seePass ? <FiEyeOff color='white' className='cursor-pointer' onClick={hidePassword} />
                             : <IoEyeOutline color='white' className='cursor-pointer' onClick={seePassword} />
