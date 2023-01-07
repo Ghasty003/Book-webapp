@@ -33,7 +33,7 @@ function AdminHomePage() {
 
            <h1 className='text-center text-2xl font-bold mt-10'>All Books</h1>
 
-          <div className='flex flex-col items-center mt-10'>
+          <div className='flex flex-wrap justify-around items-center mt-10'>
             {
                 books && books.map(book => (
                     <BookCard key={book._id} book={book} />
