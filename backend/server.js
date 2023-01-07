@@ -2,11 +2,13 @@ const express = require("express");
 const mongoose = require("mongoose");
 
 const bookRoute = require("./router/bookRoute");
+const userRoute = require("./router/userRoute");
 
 const app = express();
 
 app.use(express.json());
 app.use("/api/books", bookRoute);
+app.use("/api/users", userRoute);
 
 mongoose
   .connect("mongodb://0.0.0.0:27017/books")
