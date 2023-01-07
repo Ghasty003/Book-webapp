@@ -1,20 +1,30 @@
 import React from 'react'
-import { Route, Routes } from 'react-router-dom'
+import { useContext } from 'react'
+import { Navigate, Route, Routes } from 'react-router-dom'
+import AuthContext from './context/AuthContext'
 import AdminHomePage from './pages/AdminHomePage'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import UserHomePage from './pages/UserHomePage'
 
 function App() {
+
+  const { user } = useContext(AuthContext);
   
   return (
     <div className="App">
      <Routes>
       <Route path='/'>
-        <Route index element={<UserHomePage />} />
-        <Route path='/admin' element={<AdminHomePage />} />
-        <Route path='/register' element={<Register />} />
-        <Route path='/login' element={<Login />} />
+        <Route index element={user ? <UserHomePage /> : <Navigate to="/login" />} />
+        
+        <Route path='/admin' element={user && user.email === "admin@dev.com" ? 
+        <AdminHomePage /> : <Navigate to="/login" />} />
+
+        <Route path='/register' element={ !user ? <Register /> : user && user.email === "admin@dev.com" ? 
+        <Navigate to="/admin" /> : <Navigate to="/" />} />
+
+        <Route path='/login' element={!user ? <Login /> : user && user.email === "admin@dev.com" ? 
+        <Navigate to="/admin" /> : <Navigate to="/" />} />
       </Route>
      </Routes>
     </div>
