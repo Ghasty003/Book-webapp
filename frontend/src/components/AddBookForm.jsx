@@ -22,6 +22,7 @@ function AddBookForm() {
     const [bookName, setBookName] = useState("");
     const [image, setImage] = useState("");
     const [err, setErr] = useState(null);
+    const [isUploaded, setIsUploaded] = useState(false);
 
     const handleUpload = async (e) => {
         const file = e.target.files[0];
@@ -47,7 +48,10 @@ function AddBookForm() {
         }
 
         if (response.ok) {
-            console.log(json)
+           setIsUploaded(true);
+           setAuthorName("");
+           setBookName("");
+           setImage("");
         }
     }
 
@@ -78,6 +82,14 @@ function AddBookForm() {
                         err && (
                             <div className='text-white text-center my-5'>
                                 { err }
+                            </div>
+                        )
+                    }
+
+                    {
+                        isUploaded && (
+                            <div className='text-white text-center my-5'>
+                                Upload successful
                             </div>
                         )
                     }
