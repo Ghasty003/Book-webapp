@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { FiEyeOff, FiUser } from "react-icons/fi";
 import { IoEyeOutline } from "react-icons/io5";
 import { AiOutlineMail } from "react-icons/ai";
+import { useContext } from 'react';
+import AuthContext from '../context/AuthContext';
 
 function Register() {
 
@@ -10,6 +12,7 @@ function Register() {
     const [password, setPassword] = useState("");
     const [userName, setUserName] = useState("");
 
+    const { dispatch } = useContext(AuthContext);
 
     const [seePass, setSeePass] = useState(false);
     const [err, setErr] = useState(false);
@@ -110,6 +113,9 @@ function Register() {
             setPassword("");
             setUserName("");
             setErr("");
+
+            dispatch({type: "LOGIN", payload: json});
+            localStorage.setItem("user", JSON.stringify(json));
             console.log(json)
         }
     }
