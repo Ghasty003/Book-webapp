@@ -6,6 +6,7 @@ import AdminHomePage from './pages/AdminHomePage'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import UserHomePage from './pages/UserHomePage'
+import AddBooks from "./pages/AddBooks";
 
 function App() {
 
@@ -18,7 +19,10 @@ function App() {
         <Route index element={user ? <UserHomePage /> : <Navigate to="/login" />} />
         
         <Route path='/admin' element={user && user.email === "admin@dev.com" ? 
-        <AdminHomePage /> : <Navigate to="/login" />} />
+        <AdminHomePage /> : <Navigate to="/login" />}>
+          
+          <Route path='/addbooks' element={<AddBooks />} />
+        </Route>
 
         <Route path='/register' element={ !user ? <Register /> : user && user.email === "admin@dev.com" ? 
         <Navigate to="/admin" /> : <Navigate to="/" />} />
