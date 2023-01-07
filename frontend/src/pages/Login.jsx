@@ -128,7 +128,7 @@ function Login() {
                     }
 
                     <div className='text-center text-sm'>
-                        <p>Already have an account? <Link to="/login" className='text-orange-400'>Login</Link></p>
+                        <p>Already have an account? <Link to="/register" className='text-orange-400'>Register</Link></p>
                     </div>
                 </form>
             </div>
