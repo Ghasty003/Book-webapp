@@ -32,8 +32,8 @@ function AdminHomePage() {
            <Nav />
 
            {
-            books && books.map(item => (
-                <BookCard key={item._id} item={item} />
+            books && books.map(book => (
+                <BookCard key={book._id} book={book} />
             ))
            }
         </div>
