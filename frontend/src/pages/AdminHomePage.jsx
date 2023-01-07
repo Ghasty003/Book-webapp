@@ -1,9 +1,10 @@
 import React from 'react';
+import Nav from '../components/Nav';
 
 function AdminHomePage() {
     return (
         <div>
-            Admin Home page
+           <Nav />
         </div>
     );
 }
