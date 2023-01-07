@@ -1,9 +1,13 @@
 import React from 'react';
 
-function BookCard() {
+function BookCard({ book }) {
     return (
-        <div>
-            Hello world
+        <div className='flex items-center gap-2'>
+            <img className='w-20' src={ book.image } alt="book" />
+            <div>
+                <p className='font-bold text-lg'>{ book.authorName }</p>
+                <p>{ book.bookName }</p>
+            </div>
         </div>
     );
 }
