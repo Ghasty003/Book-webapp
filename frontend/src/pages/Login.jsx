@@ -3,11 +3,15 @@ import { Link } from 'react-router-dom';
 import { FiEyeOff } from "react-icons/fi";
 import { IoEyeOutline } from "react-icons/io5";
 import { AiOutlineMail } from "react-icons/ai";
+import { useContext } from 'react';
+import AuthContext from '../context/AuthContext';
 
 function Login() {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
+    const { dispatch } = useContext(AuthContext);
 
     const [seePass, setSeePass] = useState(false);
     const [err, setErr] = useState(false);
@@ -92,6 +96,9 @@ function Login() {
             setEmail("");
             setPassword("");
             setErr("");
+
+            dispatch({type: "LOGIN", payload: json});
+            localStorage.setItem("user", JSON.stringify(json));
             console.log(json)
         }
     }
