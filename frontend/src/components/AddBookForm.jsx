@@ -1,6 +1,21 @@
 import React,  { useState } from 'react';
 import avatar from '../assets/addAvatar.png';
 
+
+function convertToBase64(file) {
+    return new Promise((resolve, reject) => {
+        const fileReader = new FileReader();
+
+        fileReader.readAsDataURL(file);
+        fileReader.onload = () => {
+            resolve(fileReader.result);
+        }
+        fileReader.onerror = (error) =>  {
+            reject(error)
+        }
+    })
+}
+
 function AddBookForm() {
 
     const [authorName, setAuthorName] = useState("");
@@ -8,8 +23,32 @@ function AddBookForm() {
     const [image, setImage] = useState("");
     const [err, setErr] = useState(null);
 
+    const handleUpload = async (e) => {
+        const file = e.target.files[0];
+        const base64 = await convertToBase64(file);
+        setImage(base64);
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        const response = await fetch("http://localhost:4000/api/books", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({authorName, bookName, image})
+        });
+
+        const json = await response.json();
+
+        if (!response.ok) {
+            return setErr(json.error);
+        }
+
+        if (response.ok) {
+            console.log(json)
+        }
     }
 
     return (
@@ -29,10 +68,10 @@ function AddBookForm() {
 
                     <div>
                         <label className='flex flex-col items-center text-white cursor-pointer' htmlFor="image">
-                            <img src={avatar} alt="choose image" />
+                            <img className='w-[60px]' src={image ||avatar} alt="choose image" />
                             <p>Choose book image</p>
                         </label>
-                        <input id='image' type="file" className='hidden' onChange={e => {}} />
+                        <input id='image' type="file" className='hidden' onChange={e => handleUpload(e)} />
                     </div>
                     
                     <div className='flex justify-center items-center my-6'>
