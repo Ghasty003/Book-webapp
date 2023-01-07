@@ -91,7 +91,7 @@ function Register() {
     const handleRegister = async (e) => {
         e.preventDefault()
 
-        const response = await fetch("http://localhost:4000/api/users", {
+        const response = await fetch("http://localhost:4000/api/users/signup", {
             method: "POST",
             body: JSON.stringify({email, password, userName}),
             headers: {
@@ -106,6 +106,10 @@ function Register() {
         }
 
         if (response.ok) {
+            setEmail("");
+            setPassword("");
+            setUserName("");
+            setErr("");
             console.log(json)
         }
     }
@@ -137,6 +141,14 @@ function Register() {
                     <div className='flex justify-center items-center my-6'>
                         <button className='bg-orange-400 text-white w-[200px] p-2 rounded-xl text-center'>Register</button>
                     </div>
+
+                    {
+                        err && (
+                            <div className='text-white text-center my-5'>
+                                { err }
+                            </div>
+                        )
+                    }
 
                     <div className='text-center text-sm'>
                         <p>Already have an account? <Link to="/login" className='text-orange-400'>Login</Link></p>
