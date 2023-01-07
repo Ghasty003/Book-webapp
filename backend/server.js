@@ -8,8 +8,8 @@ const userRoute = require("./router/userRoute");
 
 const app = express();
 
-app.use(express.json());
 app.use(cors());
+app.use(express.json());
 app.use("/api/books", bookRoute);
 app.use("/api/users", userRoute);
 
