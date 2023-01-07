@@ -2,8 +2,8 @@ import React from 'react';
 
 function BookCard({ book }) {
     return (
-        <div className='flex w-56 items-center my-2 py-4 pr-3 bg-primary rounded-lg drop-shadow-2xl text-white'>
-            <img className='w-36 h-20 object-contain drop-shadow-2xl' src={ book.image } alt="book" />
+        <div className='flex w-56 items-center my-2 py-4 bg-primary rounded-lg drop-shadow-2xl text-white'>
+            <img className='w-20 mx-3 h-20 object-contain drop-shadow-2xl' src={ book.image } alt="book" />
             <div>
                 <p className='font-bold text-lg'>{ book.authorName }</p>
                 <p className='text-sm whitespace-nowrap'>{ book.bookName }</p>
