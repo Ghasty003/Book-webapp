@@ -22,7 +22,8 @@ function App() {
           <Route index element={user && user.email === "admin@dev.com" ? 
             <AdminHomePage /> : <Navigate to="/login" />} />
 
-          <Route path='/admin/addbooks' element={<AddBooks />} />
+          <Route path='/admin/addbooks' element={user && user.email === "admin@dev.com" ?
+          <AddBooks /> : <Navigate to="/login" />} />
         </Route>
 
         <Route path='register' element={ !user ? <Register /> : user && user.email === "admin@dev.com" ? 
