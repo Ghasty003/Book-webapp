@@ -1,5 +1,5 @@
-import React from 'react';
-import { useState } from 'react';
+import React,  { useState } from 'react';
+import avatar from '../assets/addAvatar.png';
 
 function AddBookForm() {
 
@@ -14,19 +14,25 @@ function AddBookForm() {
 
     return (
         <div className='flex justify-center items-center py-16'>
-            <div className='bg-primary  relative w-[400px] h-[450px] shadow-2xl flex flex-col items-center rounded-2xl p-5'>
-                <h2>Register your account.</h2>
+            <div className='bg-primary  relative w-[400px] h-fit shadow-2xl flex flex-col items-center rounded-2xl p-5'>
+                <h2 className='text-white text-xl'>Add New Book</h2>
                 <form className='w-full mt-4 relative' onSubmit={handleSubmit}>
-                    <div className='flex justify-between z-0 items-center pr-3 relative w-[85%] m-auto border border-gray rounded-md my-4 overflow-hidden'>
-                        <input className='w-[90%] outline-none p-2' type="text" value={authorName} onChange={e => setAuthorName(e.target.value)} />
+                    <div className='flex flex-col justify-center items-start gap-2 relative w-[85%] m-auto my-4'>
+                        <label className='text-white' htmlFor="author">Author name</label>
+                        <input id='author' className='w-full outline-none p-2 border-none rounded-xl' type="text" value={authorName} onChange={e => setAuthorName(e.target.value)} />
                     </div>
 
-                    <div className='flex justify-between items-center pr-3 relative w-[85%] m-auto border border-gray rounded-md my-4 overflow-hidden'>
-                        <input className='w-[90%] outline-none p-2' type="text" value={bookName} onChange={e => setBookName(e.target.value)} />
+                    <div className='flex flex-col justify-center items-start gap-2 relative w-[85%] m-auto my-4'>
+                        <label className='text-white' htmlFor="book">Book name</label>
+                        <input id='book' className='w-full outline-none p-2 border-none rounded-xl' type="text" value={bookName} onChange={e => setBookName(e.target.value)} />
                     </div>
 
-                    <div className='flex justify-between items-center pr-3 relative w-[85%] m-auto border border-gray rounded-md overflow-hidden'>
-                        <input type="file" className='w-[90%] outline-none p-2' onChange={e => {}} />
+                    <div>
+                        <label className='flex flex-col items-center text-white cursor-pointer' htmlFor="image">
+                            <img src={avatar} alt="choose image" />
+                            <p>Choose book image</p>
+                        </label>
+                        <input id='image' type="file" className='hidden' onChange={e => {}} />
                     </div>
                     
                     <div className='flex justify-center items-center my-6'>
