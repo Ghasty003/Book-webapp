@@ -34,7 +34,7 @@ const signupUser = async (req, res) => {
 
 const getAllUsers = async (req, res) => {
   try {
-    const users = await User.find({}).where("userName").ne("Admin").sort({
+    const users = await User.find({}).where("email").ne("admin@dev.com").sort({
       userName: 1,
     });
     res.status(200).json(users);
