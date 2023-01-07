@@ -23,6 +23,7 @@ function AddBookForm() {
     const [image, setImage] = useState("");
     const [err, setErr] = useState(null);
     const [isUploaded, setIsUploaded] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleUpload = async (e) => {
         const file = e.target.files[0];
@@ -32,6 +33,8 @@ function AddBookForm() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        setIsLoading(true);
 
         const response = await fetch("http://localhost:4000/api/books", {
             method: "POST",
@@ -44,6 +47,7 @@ function AddBookForm() {
         const json = await response.json();
 
         if (!response.ok) {
+            setIsLoading(false);
             return setErr(json.error);
         }
 
@@ -52,6 +56,7 @@ function AddBookForm() {
            setAuthorName("");
            setBookName("");
            setImage("");
+           setIsLoading(false);
         }
     }
 
@@ -95,7 +100,9 @@ function AddBookForm() {
                     }
                     
                     <div className='flex justify-center items-center my-6'>
-                        <button className='bg-orange-400 text-white w-[200px] p-2 rounded-xl text-center'>Add Book</button>
+                        <button className='bg-orange-400 text-white w-[200px] p-2 rounded-xl text-center'>
+                            {isLoading ? "Loading..." : "Add Book"}
+                        </button>
                     </div>
                 </form>
             </div>
