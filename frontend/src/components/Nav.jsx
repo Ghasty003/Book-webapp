@@ -35,10 +35,10 @@ function Nav() {
 
             <ul className='flex'>
                 <CustomLink to="/admin" children="Display Books" />
-                <CustomLink to="/addbooks" children="Add Books" />
-                <CustomLink to="/updatebooks" children="Update Books" />
-                <CustomLink to="/deletebooks" children="Delete Books" />
-                <CustomLink to="/allusers" children="Display Users" />
+                <CustomLink to="/admin/addbooks" children="Add Books" />
+                <CustomLink to="/admin/updatebooks" children="Update Books" />
+                <CustomLink to="/admin/deletebooks" children="Delete Books" />
+                <CustomLink to="/admin/allusers" children="Display Users" />
             </ul>
 
             <button onClick={handleLogout} className='bg-red-300 px-5 py-2 rounded-lg shadow-2xl drop-shadow-2xl duration-200 active:scale-90'>Logout</button>
