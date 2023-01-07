@@ -73,10 +73,6 @@ function AddBookForm() {
                         </label>
                         <input id='image' type="file" className='hidden' onChange={e => handleUpload(e)} />
                     </div>
-                    
-                    <div className='flex justify-center items-center my-6'>
-                        <button className='bg-orange-400 text-white w-[200px] p-2 rounded-xl text-center'>Add Book</button>
-                    </div>
 
                     {
                         err && (
@@ -85,7 +81,10 @@ function AddBookForm() {
                             </div>
                         )
                     }
-
+                    
+                    <div className='flex justify-center items-center my-6'>
+                        <button className='bg-orange-400 text-white w-[200px] p-2 rounded-xl text-center'>Add Book</button>
+                    </div>
                 </form>
             </div>
         </div>
