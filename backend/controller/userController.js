@@ -34,7 +34,9 @@ const signupUser = async (req, res) => {
 
 const getAllUsers = async (req, res) => {
   try {
-    const users = await User.find({}).sort({ userName: 1 });
+    const users = await User.find({}).where("userName").ne("Admin").sort({
+      userName: 1,
+    });
     res.status(200).json(users);
   } catch (error) {
     res.status(400).json({ error: error.message });
