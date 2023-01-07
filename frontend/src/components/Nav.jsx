@@ -31,7 +31,7 @@ function Nav() {
 
     return (
         <nav className='flex justify-between items-center py-5 px-10 bg-primary text-white'>
-            <h2 className='text-xl'>Book web</h2>
+            <h2 className='text-xl'>Admin Control</h2>
 
             <ul className='flex'>
                 <CustomLink to="/admin" children="Display Books" />
