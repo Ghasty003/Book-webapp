@@ -1,5 +1,7 @@
 import React from 'react';
+import { useContext } from 'react';
 import { Link, useMatch, useResolvedPath } from "react-router-dom";
+import AuthContext from "../context/AuthContext";
 
 const CustomLink = ({ to, children}) => {
 
@@ -19,6 +21,14 @@ const CustomLink = ({ to, children}) => {
 }
 
 function Nav() {
+
+    const { dispatch } = useContext(AuthContext);
+
+    const handleLogout =  () => {
+        localStorage.removeItem("user");
+        dispatch({type: "LOGOUT"})
+    }
+
     return (
         <nav className='flex justify-between items-center py-5 px-10 bg-primary text-white'>
             <h2 className='text-xl'>Book web</h2>
@@ -31,7 +41,7 @@ function Nav() {
                 <CustomLink to="/allusers" children="Display Users" />
             </ul>
 
-            <button className='bg-red-300 px-5 py-2 rounded-lg shadow-2xl drop-shadow-2xl duration-200 active:scale-90'>Logout</button>
+            <button onClick={handleLogout} className='bg-red-300 px-5 py-2 rounded-lg shadow-2xl drop-shadow-2xl duration-200 active:scale-90'>Logout</button>
         </nav>
     );
 }
