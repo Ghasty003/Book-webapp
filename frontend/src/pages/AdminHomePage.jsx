@@ -31,11 +31,15 @@ function AdminHomePage() {
         <div>
            <Nav />
 
-           {
-            books && books.map(book => (
-                <BookCard key={book._id} book={book} />
-            ))
-           }
+           <h1 className='text-center text-2xl font-bold mt-10'>All Books</h1>
+
+          <div className='flex flex-col items-center mt-16'>
+            {
+                books && books.map(book => (
+                    <BookCard key={book._id} book={book} />
+                ))
+            }
+          </div>
         </div>
     );
 }
