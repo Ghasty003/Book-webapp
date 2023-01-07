@@ -1,11 +1,12 @@
 import React from 'react';
+import AddBookForm from '../components/AddBookForm';
 import Nav from '../components/Nav';
 
 function AddBooks() {
     return (
         <div>
             <Nav />
-            Add book
+            <AddBookForm />
         </div>
     );
 }
