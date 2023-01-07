@@ -4,6 +4,7 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 import AuthContext from './context/AuthContext'
 import AddBooks from './pages/AddBooks'
 import AdminHomePage from './pages/AdminHomePage'
+import GetUsers from './pages/GetUsers'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import UserHomePage from './pages/UserHomePage'
@@ -24,6 +25,9 @@ function App() {
 
           <Route path='/admin/addbooks' element={user && user.email === "admin@dev.com" ?
           <AddBooks /> : <Navigate to="/login" />} />
+
+          <Route path='/admin/allusers' element={user && user.email === "admin@dev.com" ?
+          <GetUsers /> : <Navigate to="/login" />} />
         </Route>
 
         <Route path='register' element={ !user ? <Register /> : user && user.email === "admin@dev.com" ? 
