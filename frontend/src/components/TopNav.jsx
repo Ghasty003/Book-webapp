@@ -2,9 +2,7 @@ import React from 'react';
 import { useContext } from 'react';
 import { Link, useMatch, useResolvedPath } from 'react-router-dom';
 import AuthContext from "../context/AuthContext";
-import BookContext from "../context/BookContext";
 import { BsFillBookFill } from "react-icons/bs";
-import { useEffect } from 'react';
 
 
 const CustomLink = ({ to, children }) => {
@@ -31,30 +29,11 @@ const CustomLink = ({ to, children }) => {
 function TopNav() {
 
     const { dispatch } = useContext(AuthContext);
-    const { books, dispatch:bookDispatch } = useContext(BookContext);
 
     const handleLogout = () => {
         localStorage.removeItem("user");
         dispatch({type: "LOGOUT"})
     }
-
-    useEffect(() => {
-        const fetchBooks = async () => {
-            const response = await fetch("http://localhost:4000/api/books");
-            const json = await response.json();
-
-            if (!response.ok) {
-                return console.log(json);
-            }
-
-            if (response.ok) {
-                bookDispatch({type: "FETCH BOOKS", payload: json});
-            }
-        }
-
-        fetchBooks();
-    }, [bookDispatch]);
-
     
 
     return (
