@@ -5,8 +5,28 @@ import { IoMdAdd } from "react-icons/io";
 
 function Book({ book }) {
 
-    const handleAdd = () => {
-        console.log("add")
+    const handleAdd = async () => {
+       const authorName = book.authorName;
+       const bookName = book.bookName;
+       const image = book.image;
+
+       const response = await fetch("http://localhost:4000/api/users/collection", {
+        method: "POST",
+        body: JSON.stringify({authorName, bookName, image}),
+        headers: {
+            "Content-Type": "application/json"
+        }
+       });
+
+       const json = await response.json();
+
+       if (!response.ok) {
+        console.log(json.error);
+       }
+
+       if (response.ok) {
+        console.log(json)
+       }
     }
 
     return (
