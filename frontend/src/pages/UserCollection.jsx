@@ -8,9 +8,30 @@ import { FiDelete } from "react-icons/fi";
 
 function Book({ book }) {
 
+    const { setUserCollection, userCollection } = useContext(UserCollectionContext);
+
+    const handleRemove = async () => {
+        console.log(book._id);
+        const response = await fetch("http://localhost:4000/api/users/collection/" + book._id, {
+            method: "DELETE"
+        });
+
+        const json = await response.json();
+
+        if (!response.ok) {
+            return console.log(json.error);
+        }
+
+        if (response.ok) {
+            const newCollection = userCollection.filter(col => col._id != book._id);
+            setUserCollection(newCollection);
+            console.log(json);
+        }
+    } 
+
     return (
         <div className='flex flex-col justify-center w-56 items-center my-2 py-4 bg-primary rounded-lg drop-shadow-2xl text-white'>
-            <button title='Remove from collection' className='mb-3 text-white'><FiDelete size={25} /></button>
+            <button onClick={handleRemove} title='Remove from collection' className='mb-3 text-white'><FiDelete size={25} /></button>
             <div className='flex items-center'>
                 <img className='w-20 mx-3 h-20 object-contain drop-shadow-2xl' src={ book.image } alt="book" />
                 <div>
