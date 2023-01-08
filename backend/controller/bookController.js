@@ -31,10 +31,16 @@ const getBook = async (req, res) => {
 };
 
 const createBook = async (req, res) => {
-  const body = req.body;
+  const { authorName, bookName, image } = req.body;
 
   try {
-    const book = await Book.create(body);
+    const exists = await Book.findOne({ authorName, bookName, image });
+
+    if (exists) {
+      return res.status(400).json("Book already exists");
+    }
+
+    const book = await Book.create({ authorName, bookName, image });
     res.status(200).json(book);
   } catch (error) {
     res.status(400).json({ error: error.message });
