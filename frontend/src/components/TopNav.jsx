@@ -12,11 +12,12 @@ function TopNav() {
     }
 
     return (
-        <nav>
-            <div>
-                <h1>Book Web</h1>
-                <button onClick={handleLogout} className='bg-red-300 px-5 py-2 rounded-lg shadow-2xl drop-shadow-2xl duration-200 active:scale-90'>Logout</button>
+        <nav className='bg-primary p-5'>
+            <div className='flex justify-around items-center text-white'>
+                <h1 className='text-xl'>Book Web</h1>
+                <button onClick={handleLogout} className='bg-red-300 px-5 text-sm py-2 rounded-lg shadow-2xl drop-shadow-2xl duration-200 active:scale-90'>Logout</button>
             </div>
+            
             <ul>
 
             </ul>
