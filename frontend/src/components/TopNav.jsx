@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import { Link, useMatch, useResolvedPath } from 'react-router-dom';
 import AuthContext from "../context/AuthContext";
 import { BsFillBookFill, BsCollectionFill } from "react-icons/bs";
-import { GrUserSettings } from "react-icons/gr";
+import { RiUserSettingsLine } from "react-icons/ri";
 
 
 const CustomLink = ({ to, children }) => {
@@ -14,7 +14,7 @@ const CustomLink = ({ to, children }) => {
     return (
         <div className='relative mx-4 text-xl px-4'>
             <div className='flex items-center gap-1'>
-                { to === "/" ? <BsFillBookFill /> : to === "/collection" ? <BsCollectionFill /> : <GrUserSettings />}
+                { to === "/" ? <BsFillBookFill /> : to === "/collection" ? <BsCollectionFill /> : <RiUserSettingsLine />}
                 <Link to={to}>
                     { children }
                 </Link>
