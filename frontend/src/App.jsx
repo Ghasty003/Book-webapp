@@ -8,6 +8,7 @@ import DeleteBook from './pages/DeleteBook'
 import GetUsers from './pages/GetUsers'
 import Login from './pages/Login'
 import Register from './pages/Register'
+import UserCollection from './pages/UserCollection'
 import UserHomePage from './pages/UserHomePage'
 
 function App() {
@@ -19,6 +20,8 @@ function App() {
      <Routes>
       <Route path='/'>
         <Route index element={user ? <UserHomePage /> : <Navigate to="/login" />} />
+
+        <Route path='/collection' element={user ? <UserCollection /> : <Navigate to="/login" />} />
         
         <Route path='admin'>
           <Route index element={user && user.email === "admin@dev.com" ? 
