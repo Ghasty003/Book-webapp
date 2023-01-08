@@ -1,4 +1,5 @@
 import React from 'react';
+import TopNav from '../components/TopNav';
 
 function UserCollection() {
     return (
