@@ -1,6 +1,16 @@
 import React from 'react';
+import { useContext } from 'react';
+import AuthContext from "../context/AuthContext";
 
 function TopNav() {
+
+    const { dispatch } = useContext(AuthContext);
+
+    const handleLogout = () => {
+        localStorage.removeItem("user");
+        dispatch({type: "LOGOUT"})
+    }
+
     return (
         <nav>
             <div>
