@@ -4,14 +4,38 @@ import { useContext } from 'react';
 import Nav from '../components/Nav';
 import BookContext from '../context/BookContext';
 import { FcSearch } from "react-icons/fc";
+import { AiFillDelete } from "react-icons/ai";
 
-const Book = ({ book }) => {
+const Book = ({ book, setBookQuery, bookQuery }) => {
+
+    const handleDelete = async () => {
+        const response = await fetch("http://localhost:4000/api/books/" + book._id , {
+            method: "DELETE",
+        });
+
+        const json = await response.json();
+
+        if (!response.ok) {
+            console.log(json.error)
+        }
+
+        if (response.ok) {
+            const newQuery = bookQuery.filter(q => q._id !== json._id);
+            setBookQuery(newQuery);
+            console.log(json)
+            console.log("book deleted")
+        }
+    }
+
     return (
-        <div className='flex w-56 items-center my-2 py-4 bg-primary rounded-lg drop-shadow-2xl text-white'>
-            <img className='w-20 mx-3 h-20 object-contain drop-shadow-2xl' src={ book.image } alt="book" />
-            <div>
-                <p className='font-bold text-lg'>{ book.authorName }</p>
-                <p className='text-sm whitespace-nowrap'>{ book.bookName }</p>
+        <div className='flex flex-col justify-center w-56 items-center my-2 py-4 bg-primary rounded-lg drop-shadow-2xl text-white'>
+            <button onClick={handleDelete} className='mb-3'><AiFillDelete size={25}color="yellow" /></button>
+            <div className='flex items-center'>
+                <img className='w-20 mx-3 h-20 object-contain drop-shadow-2xl' src={ book.image } alt="book" />
+                <div>
+                    <p className='font-bold text-lg'>{ book.authorName }</p>
+                    <p className='text-sm whitespace-nowrap'>{ book.bookName }</p>
+                </div>
             </div>
         </div>
     )
@@ -30,7 +54,7 @@ function DeleteBook() {
         e.preventDefault();
 
         const deletebook = books.filter(book => {
-            return book.bookName === "the nights"
+            return book.bookName === query
         });
 
         setBookQuery(deletebook);
@@ -51,7 +75,7 @@ function DeleteBook() {
                 <div className='flex flex-wrap justify-around gap-2 mt-8'>
                     {
                         bookQuery && bookQuery.map(book => (
-                            <Book key={book._id} book={book} />
+                            <Book key={book._id} book={book} setBookQuery={setBookQuery} bookQuery={bookQuery} />
                         ))
                     }
                 </div>
