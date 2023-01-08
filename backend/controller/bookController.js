@@ -37,7 +37,7 @@ const createBook = async (req, res) => {
     const exists = await Book.findOne({ authorName, bookName, image });
 
     if (exists) {
-      return res.status(400).json("Book already exists");
+      return res.status(400).json({ error: "Book already exists" });
     }
 
     const book = await Book.create({ authorName, bookName, image });
