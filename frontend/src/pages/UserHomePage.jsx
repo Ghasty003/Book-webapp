@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import TopNav from '../components/TopNav';
 import BookContext from "../context/BookContext";
 import { IoMdAdd } from "react-icons/io";
+import { MdDone } from "react-icons/md";
 
 function Book({ book }) {
 
@@ -76,6 +77,11 @@ function UserHomePage() {
                     <Book key={book._id} book={book} />
                 ))
             }
+          </div>
+
+          <div className='fixed bottom-8 border border-l-green-500 border-l-2 animate-bounce timing rounded-md py-3 px-6 left-[50%] -translate-x-[50%] flex items-center gap-2 bg-white shadow-2xl'>
+            <div className='bg-green-500 rounded-full p-1 text-white'><MdDone /></div>
+            <div>Book added to collection</div>
           </div>
         </div>
     );
