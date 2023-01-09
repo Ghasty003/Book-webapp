@@ -123,7 +123,7 @@ function Login() {
                     </div>
                     
                     <div className='flex justify-center items-center my-6'>
-                        <button className='bg-orange-400 text-white w-[200px] p-2 rounded-xl text-center'>Register</button>
+                        <button className='bg-orange-400 text-white w-[200px] p-2 rounded-xl text-center'>Login</button>
                     </div>
 
                     {
