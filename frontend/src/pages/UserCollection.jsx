@@ -23,8 +23,7 @@ function Book({ book }) {
         }
 
         if (response.ok) {
-            console.log(json);
-            const newCollection = userCollection.filter(col => col._id !== book._id);
+            const newCollection = userCollection.filter(col => col._id !== json._id);
             setUserCollection(newCollection);
         }
     } 
