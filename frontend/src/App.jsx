@@ -10,6 +10,7 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import UserCollection from './pages/UserCollection'
 import UserHomePage from './pages/UserHomePage'
+import UserSettings from './pages/UserSettings'
 
 function App() {
 
@@ -22,6 +23,8 @@ function App() {
         <Route index element={user ? <UserHomePage /> : <Navigate to="/login" />} />
 
         <Route path='/collection' element={user ? <UserCollection /> : <Navigate to="/login" />} />
+
+        <Route path='/settings' element={user ? <UserSettings /> : <Navigate to="/login" />} />
         
         <Route path='admin'>
           <Route index element={user && user.email === "admin@dev.com" ? 
