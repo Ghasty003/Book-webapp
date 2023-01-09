@@ -3,7 +3,7 @@ import TopNav from '../components/TopNav';
 import AuthContext from '../context/AuthContext';
 import { FaUser } from "react-icons/fa";
 import { BsKeyFill } from "react-icons/bs";
-import { MdEmail, MdDelete, MdOutlineFileDownloadDone } from "react-icons/md";
+import { MdEmail, MdDelete, MdOutlineFileDownloadDone, MdDone } from "react-icons/md";
 import { useReducer } from 'react';
 
 const formReducer = (state, action) => {
@@ -29,6 +29,13 @@ const formReducer = (state, action) => {
                 username: false
             }
 
+        case "CLOSE":
+            return {
+                email: false,
+                password: false,
+                username: false
+            }
+
         default:
             return state;
     }
@@ -38,6 +45,9 @@ function UserSettings() {
 
     const [response, setResponse] = useState("");
     const [showMessage, setShowMessage] = useState(false);
+    const [isDone, setIsDone] = useState(false);
+
+    const [userName, setUserName] = useState("");
 
     const [state, formDispatch] = useReducer(formReducer, {
         username: false,
@@ -69,8 +79,30 @@ function UserSettings() {
         })
      }
 
-    const handleUsernameChange = (e) => {
+    const handleUsernameChange = async(e) => {
        e.preventDefault();
+
+       const response = await fetch("http://localhost:4000/api/users/update/"+ user.userId, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({userName})
+       });
+
+       const json = await response.json();
+
+       if (!response.ok) {
+        console.log(json.error)
+       }
+
+       if (response.ok) {
+        formDispatch({type: "CLOSE"});
+        setIsDone(true);
+        setTimeout(() => {
+            setIsDone(false);
+        }, 2000);
+       }
     }
 
     return (
@@ -88,7 +120,8 @@ function UserSettings() {
                     {
                         state.username && (
                             <form onSubmit={handleUsernameChange} className='flex gap-2 bg-primary w-80 p-4 rounded-lg mt-5'>
-                                <input className='outline-none border-none rounded px-2 py-1' placeholder='Enter new username...' />
+                                <input className='outline-none border-none rounded px-2 py-1' placeholder='Enter new username...'
+                                 value={userName} onChange={e => setUserName(e.target.value)} />
                                 <button title='Done'><MdOutlineFileDownloadDone size={23} color="white" /></button>
                             </form>
                         )
@@ -152,6 +185,15 @@ function UserSettings() {
                 </div>
             )
            }
+
+        {
+            isDone && (
+                <div className='fixed bottom-8 border border-l-green-500 border-l-2 animate-bounce timing rounded-md py-3 px-6 left-[50%] -translate-x-[50%] flex items-center gap-2 bg-white shadow-2xl'>
+                    <div className='bg-green-500 rounded-full p-1 text-white'><MdDone /></div>
+                    <div>LogIn again to see the reflection.</div>
+                </div>
+            )
+          }
 
             {
             response && (
