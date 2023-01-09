@@ -3,8 +3,9 @@ import TopNav from '../components/TopNav';
 import BookContext from "../context/BookContext";
 import { IoMdAdd } from "react-icons/io";
 import { MdDone } from "react-icons/md";
+import { useState } from 'react';
 
-function Book({ book }) {
+function Book({ book, setIsAdded }) {
 
     const handleAdd = async () => {
        const authorName = book.authorName;
@@ -26,7 +27,11 @@ function Book({ book }) {
        }
 
        if (response.ok) {
-        console.log(json)
+        setIsAdded(true);
+
+        setTimeout(() => {
+            setIsAdded(false);
+        }, 2000);
        }
     }
 
@@ -45,6 +50,8 @@ function Book({ book }) {
 }
 
 function UserHomePage() {
+
+    const [isAdded, setIsAdded] = useState(false);
 
     const { books, dispatch:bookDispatch } = useContext(BookContext);
 
@@ -74,15 +81,19 @@ function UserHomePage() {
            <div className='flex flex-wrap justify-around gap-4 items-center mt-10'>
             {
                 books && books.map(book => (
-                    <Book key={book._id} book={book} />
+                    <Book key={book._id} book={book} setIsAdded={setIsAdded} />
                 ))
             }
           </div>
 
-          <div className='fixed bottom-8 border border-l-green-500 border-l-2 animate-bounce timing rounded-md py-3 px-6 left-[50%] -translate-x-[50%] flex items-center gap-2 bg-white shadow-2xl'>
-            <div className='bg-green-500 rounded-full p-1 text-white'><MdDone /></div>
-            <div>Book added to collection</div>
-          </div>
+          {
+            isAdded && (
+                <div className='fixed bottom-8 border border-l-green-500 border-l-2 animate-bounce timing rounded-md py-3 px-6 left-[50%] -translate-x-[50%] flex items-center gap-2 bg-white shadow-2xl'>
+                    <div className='bg-green-500 rounded-full p-1 text-white'><MdDone /></div>
+                    <div>Book added to collection</div>
+                </div>
+            )
+          }
         </div>
     );
 }
