@@ -10,17 +10,23 @@ const formReducer = (state, action) => {
     switch (action.type) {
         case "USERNAME":
             return {
-                username: true
+                username: true,
+                password: false,
+                email: false
             }
 
         case "PASSWORD":
             return {
-                password: true
+                password: true,
+                username: false,
+                email: false
             }
 
         case "EMAIL":
             return {
-                email: true
+                email: true,
+                password: false,
+                username: false
             }
 
         default:
@@ -63,8 +69,8 @@ function UserSettings() {
         })
      }
 
-    const handleUsernameChange = () => {
-       
+    const handleUsernameChange = (e) => {
+       e.preventDefault();
     }
 
     return (
@@ -75,13 +81,13 @@ function UserSettings() {
 
             <ul className='flex flex-col gap-6 ml-44 mt-14'>
                 <div>
-                    <div className='flex items-center gap-2' onClick={handleUsernameChange}>
+                    <div className='flex items-center gap-2' onClick={() => formDispatch({type: "USERNAME"})}>
                         <FaUser size={20} />
                         <li className={`cursor-pointer`}>Change Username</li>
                     </div>
                     {
                         state.username && (
-                            <form className='flex gap-2 bg-primary w-80 p-4 rounded-lg mt-5'>
+                            <form onSubmit={handleUsernameChange} className='flex gap-2 bg-primary w-80 p-4 rounded-lg mt-5'>
                                 <input className='outline-none border-none rounded px-2 py-1' placeholder='Enter new username...' />
                                 <button title='Done'><MdOutlineFileDownloadDone size={23} color="white" /></button>
                             </form>
