@@ -65,6 +65,15 @@ function UserSettings() {
                 <Lists setResponse={setResponse} text="Delete account" index="3" />
             </ul>
 
+            <div className='fixed top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4 text-center bg-yellow-100 py-6 px-10 shadow-xl rounded-lg'>
+                <h2 className='font-bold text-xl my-4'>Are you sure you want to delete account?</h2>
+                <p className='my-2 font-bold'>This action is irreversible</p>
+                <div className='flex gap-4 justify-end mt-4'>
+                    <button className='bg-red-300 text-white py-1 px-6 rounded-lg'>Yes</button>
+                    <button>Cancel</button>
+                </div>
+            </div>
+
             {
             response && (
                 <div className='fixed bottom-8 border border-l-red-500 border-l-2 animate-bounce timing rounded-md py-3 px-6 left-[50%] -translate-x-[50%] flex items-center gap-2 bg-white shadow-2xl'>
