@@ -33,7 +33,7 @@ const removeFromCollection = async (req, res) => {
   const { id } = req.params;
 
   try {
-    const book = await UserBooks.findOneAndDelete({ id });
+    const book = await UserBooks.findOneAndDelete({ _id: id });
     res.status(200).json(book);
   } catch (error) {
     res.status(400).json({ error: error.message });

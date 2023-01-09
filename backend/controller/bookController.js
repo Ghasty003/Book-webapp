@@ -76,7 +76,7 @@ const deleteBook = async (req, res) => {
   }
 
   try {
-    const book = await Book.findOneAndDelete({ id });
+    const book = await Book.findOneAndDelete({ _id: id });
 
     if (!book) {
       return res.status(404).json({ message: "No such book" });

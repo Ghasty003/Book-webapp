@@ -23,9 +23,9 @@ function Book({ book }) {
         }
 
         if (response.ok) {
-            const newCollection = userCollection.filter(col => col._id != book._id);
-            setUserCollection(newCollection);
             console.log(json);
+            const newCollection = userCollection.filter(col => col._id !== book._id);
+            setUserCollection(newCollection);
         }
     } 
 
