@@ -1,11 +1,11 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import TopNav from '../components/TopNav';
 import BookContext from "../context/BookContext";
 import { IoMdAdd } from "react-icons/io";
 import { MdDone } from "react-icons/md";
-import { useState } from 'react';
+import { FcDeleteRow } from "react-icons/fc";
 
-function Book({ book, setIsAdded }) {
+function Book({ book, setIsAdded, setExists }) {
 
     const handleAdd = async () => {
        const authorName = book.authorName;
@@ -23,7 +23,11 @@ function Book({ book, setIsAdded }) {
        const json = await response.json();
 
        if (!response.ok) {
-        console.log(json.error);
+        setExists(json.error);
+
+        setTimeout(() => {
+            setExists("");
+        }, 2000);
        }
 
        if (response.ok) {
@@ -52,8 +56,10 @@ function Book({ book, setIsAdded }) {
 function UserHomePage() {
 
     const [isAdded, setIsAdded] = useState(false);
+    const [exists, setExists] = useState("");
 
     const { books, dispatch:bookDispatch } = useContext(BookContext);
+
 
     useEffect(() => {
         const fetchBooks = async () => {
@@ -61,7 +67,7 @@ function UserHomePage() {
             const json = await response.json();
 
             if (!response.ok) {
-                return console.log(json);
+                return console.log(json.error);
             }
 
             if (response.ok) {
@@ -81,7 +87,7 @@ function UserHomePage() {
            <div className='flex flex-wrap justify-around gap-4 items-center mt-10'>
             {
                 books && books.map(book => (
-                    <Book key={book._id} book={book} setIsAdded={setIsAdded} />
+                    <Book key={book._id} book={book} setIsAdded={setIsAdded} setExists={setExists} />
                 ))
             }
           </div>
@@ -91,6 +97,15 @@ function UserHomePage() {
                 <div className='fixed bottom-8 border border-l-green-500 border-l-2 animate-bounce timing rounded-md py-3 px-6 left-[50%] -translate-x-[50%] flex items-center gap-2 bg-white shadow-2xl'>
                     <div className='bg-green-500 rounded-full p-1 text-white'><MdDone /></div>
                     <div>Book added to collection</div>
+                </div>
+            )
+          }
+
+          {
+            exists && (
+                <div className='fixed bottom-8 border border-l-red-500 border-l-2 animate-bounce timing rounded-md py-3 px-6 left-[50%] -translate-x-[50%] flex items-center gap-2 bg-white shadow-2xl'>
+                    <div className='bg-red-500 rounded-full p-1 text-red-500'><FcDeleteRow /></div>
+                    <div>{ exists }</div>
                 </div>
             )
           }
