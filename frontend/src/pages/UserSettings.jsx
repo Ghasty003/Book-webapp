@@ -3,12 +3,41 @@ import TopNav from '../components/TopNav';
 import AuthContext from '../context/AuthContext';
 import { FaUser } from "react-icons/fa";
 import { BsKeyFill } from "react-icons/bs";
-import { MdEmail, MdDelete } from "react-icons/md";
+import { MdEmail, MdDelete, MdOutlineFileDownloadDone } from "react-icons/md";
+import { useReducer } from 'react';
+
+const formReducer = (state, action) => {
+    switch (action.type) {
+        case "USERNAME":
+            return {
+                username: true
+            }
+
+        case "PASSWORD":
+            return {
+                password: true
+            }
+
+        case "EMAIL":
+            return {
+                email: true
+            }
+
+        default:
+            return state;
+    }
+}
 
 function UserSettings() {
 
     const [response, setResponse] = useState("");
     const [showMessage, setShowMessage] = useState(false);
+
+    const [state, formDispatch] = useReducer(formReducer, {
+        username: false,
+        email: false,
+        password: false
+    });
 
     const { user, dispatch } = useContext(AuthContext);
 
@@ -34,6 +63,10 @@ function UserSettings() {
         })
      }
 
+    const handleUsernameChange = () => {
+       
+    }
+
     return (
         <div>
             <TopNav />
@@ -41,19 +74,49 @@ function UserSettings() {
             <h1 className='text-center text-2xl font-bold mt-10'>Hi, {user.userName}</h1>
 
             <ul className='flex flex-col gap-6 ml-44 mt-14'>
-                <div className='flex items-center gap-2'>
-                    <FaUser size={20} />
-                    <li className={`cursor-pointer`}>Change Username</li>
+                <div>
+                    <div className='flex items-center gap-2' onClick={handleUsernameChange}>
+                        <FaUser size={20} />
+                        <li className={`cursor-pointer`}>Change Username</li>
+                    </div>
+                    {
+                        state.username && (
+                            <form className='flex gap-2 bg-primary w-80 p-4 rounded-lg mt-5'>
+                                <input className='outline-none border-none rounded px-2 py-1' placeholder='Enter new username...' />
+                                <button title='Done'><MdOutlineFileDownloadDone size={23} color="white" /></button>
+                            </form>
+                        )
+                    }
                 </div>
 
-                <div className='flex items-center gap-2'>
-                    <BsKeyFill size={20} />
-                    <li className={`cursor-pointer`}>Change Password</li>
+                <div>
+                    <div className='flex items-center gap-2'>
+                        <BsKeyFill size={20} />
+                        <li className={`cursor-pointer`}>Change Password</li>
+                    </div>
+                    {
+                        state.password && (
+                            <form className='flex gap-2 bg-primary w-80 p-4 rounded-lg mt-5'>
+                                <input className='outline-none border-none rounded px-2 py-1' placeholder='Enter new password...' />
+                                <button title='Done'><MdOutlineFileDownloadDone size={23} color="white" /></button>
+                            </form>
+                        )
+                    }
                 </div>
 
-                <div className='flex items-center gap-2'>
-                    <MdEmail size={20} />
-                    <li onClick={handleDelete} className={`cursor-pointer`}>Change Email Address</li>
+                <div>
+                   <div className='flex items-center gap-2'>
+                        <MdEmail size={20} />
+                        <li className={`cursor-pointer`}>Change Email Address</li>
+                   </div>
+                   {
+                        state.email && (
+                            <form className='flex gap-2 bg-primary w-80 p-4 rounded-lg mt-5'>
+                                <input className='outline-none border-none rounded px-2 py-1' placeholder='Enter new email...' />
+                                <button title='Done'><MdOutlineFileDownloadDone size={23} color="white" /></button>
+                            </form>
+                        )
+                    }
                 </div>
 
                 <div className='flex items-center gap-2'>
