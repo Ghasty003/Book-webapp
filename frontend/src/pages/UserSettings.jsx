@@ -12,7 +12,6 @@ const Lists =  ({ text, index, setResponse }) => {
     const handleClick = async () => {
         if (index == 3) {
            const response = await deleteUser();
-           console.log(response);
            setResponse(response);
            setTimeout(() => {
             localStorage.removeItem("user");
