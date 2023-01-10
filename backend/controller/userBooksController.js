@@ -16,7 +16,12 @@ const addToCollection = async (req, res) => {
   const user_id = req.user._id;
 
   try {
-    const exists = await UserBooks.findOne({ authorName, bookName, image });
+    const exists = await UserBooks.findOne({
+      authorName,
+      bookName,
+      image,
+      user_id,
+    });
 
     if (exists) {
       return res
