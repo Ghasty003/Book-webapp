@@ -89,6 +89,14 @@ function UserCollection() {
                     <Book key={book._id} book={book} />
                 ))
             }
+
+            {
+                books.length <= 0 && (
+                    <div>
+                        <p className='font-bold text-lg'>Your collection is Empty</p>
+                    </div>
+                )
+            }
           </div>
             
         </div>
