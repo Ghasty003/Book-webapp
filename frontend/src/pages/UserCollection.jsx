@@ -4,16 +4,23 @@ import { useContext } from 'react';
 import TopNav from '../components/TopNav';
 import UserCollectionContext from '../context/UserCollectionContext';
 import { FiDelete } from "react-icons/fi";
+import AuthContext from '../context/AuthContext';
 
 
 function Book({ book }) {
 
     const { setUserCollection, userCollection } = useContext(UserCollectionContext);
 
+
+    const { user } = useContext(AuthContext);
+
     const handleRemove = async () => {
         console.log(book._id);
         const response = await fetch("http://localhost:4000/api/users/collection/" + book._id, {
-            method: "DELETE"
+            method: "DELETE",
+            headers: {
+                "Authorization": `Bearer ${user.token}`
+            }
         });
 
         const json = await response.json();
@@ -47,9 +54,15 @@ function UserCollection() {
 
     const { userCollection:books, setUserCollection } = useContext(UserCollectionContext);
 
+    const { user } = useContext(AuthContext);
+
     useEffect(() => {
         const fetchUserBooks = async () => {
-            const response = await fetch("http://localhost:4000/api/users/collection");
+            const response = await fetch("http://localhost:4000/api/users/collection", {
+                headers: {
+                    "Authorization": `Bearer ${user.token}`
+                }
+            });
             const json = await response.json();
 
             if (!response.ok) {
