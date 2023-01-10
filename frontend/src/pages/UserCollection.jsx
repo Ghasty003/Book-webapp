@@ -15,7 +15,6 @@ function Book({ book }) {
     const { user } = useContext(AuthContext);
 
     const handleRemove = async () => {
-        console.log(book._id);
         const response = await fetch("http://localhost:4000/api/users/collection/" + book._id, {
             method: "DELETE",
             headers: {
