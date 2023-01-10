@@ -4,8 +4,11 @@ import BookContext from "../context/BookContext";
 import { IoMdAdd } from "react-icons/io";
 import { MdDone } from "react-icons/md";
 import { FcDeleteRow } from "react-icons/fc";
+import AuthContext from '../context/AuthContext';
 
 function Book({ book, setIsAdded, setExists }) {
+
+    const { user } = useContext(AuthContext);
 
     const handleAdd = async () => {
        const authorName = book.authorName;
@@ -16,7 +19,8 @@ function Book({ book, setIsAdded, setExists }) {
         method: "POST",
         body: JSON.stringify({authorName, bookName, image}),
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${user.token}`
         }
        });
 
