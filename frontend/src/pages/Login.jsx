@@ -99,7 +99,6 @@ function Login() {
 
             dispatch({type: "LOGIN", payload: json});
             localStorage.setItem("user", JSON.stringify(json));
-            console.log(json)
         }
     }
 
