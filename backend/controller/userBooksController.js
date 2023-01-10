@@ -1,8 +1,9 @@
 const UserBooks = require("../model/userBooksModel");
 
 const getUserBooks = async (req, res) => {
+  const user_id = req.user._id;
   try {
-    const books = await UserBooks.find({});
+    const books = await UserBooks.find({ user_id });
     res.status(200).json(books);
   } catch (error) {
     res.status(400).json({ error: error.message });
@@ -11,6 +12,8 @@ const getUserBooks = async (req, res) => {
 
 const addToCollection = async (req, res) => {
   const { authorName, bookName, image } = req.body;
+
+  const user_id = req.user._id;
 
   try {
     const exists = await UserBooks.findOne({ authorName, bookName, image });
@@ -21,7 +24,12 @@ const addToCollection = async (req, res) => {
         .json({ error: "Book already exists in your collection" });
     }
 
-    const book = await UserBooks.create({ authorName, bookName, image });
+    const book = await UserBooks.create({
+      authorName,
+      bookName,
+      image,
+      user_id,
+    });
 
     res.status(200).json(book);
   } catch (error) {
