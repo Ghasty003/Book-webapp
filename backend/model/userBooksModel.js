@@ -13,6 +13,10 @@ const userBooksSchema = new Schema({
     type: String,
     required: true,
   },
+  user_id: {
+    type: String,
+    required: true,
+  },
 });
 
 module.exports = mongoose.model("userBooks", userBooksSchema);
