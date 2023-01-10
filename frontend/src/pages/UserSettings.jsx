@@ -1,10 +1,9 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useReducer } from 'react';
 import TopNav from '../components/TopNav';
 import AuthContext from '../context/AuthContext';
 import { FaUser } from "react-icons/fa";
 import { BsKeyFill } from "react-icons/bs";
 import { MdEmail, MdDelete, MdOutlineFileDownloadDone, MdDone } from "react-icons/md";
-import { useReducer } from 'react';
 
 const formReducer = (state, action) => {
     switch (action.type) {
@@ -48,6 +47,10 @@ function UserSettings() {
     const [isDone, setIsDone] = useState(false);
 
     const [userName, setUserName] = useState("");
+    const [password, setPassword] = useState("");
+    const [email, setEmail] = useState("");
+
+    const [message, setMessage] = useState("");
 
     const [state, formDispatch] = useReducer(formReducer, {
         username: false,
@@ -97,12 +100,46 @@ function UserSettings() {
        }
 
        if (response.ok) {
+        setMessage("LogIn again to see the reflection.");
         formDispatch({type: "CLOSE"});
         setIsDone(true);
         setTimeout(() => {
             setIsDone(false);
         }, 2000);
        }
+    }
+
+    const handleChangePassword = (e) => {
+        e.preventDefault();
+
+        console.log(password)
+    }
+
+    const handleChangeEmail = async (e) => {
+        e.preventDefault();
+
+        const response = await fetch("http://localhost:4000/api/users/update/"+ user.userId, {
+            method: 'PATCH',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({email})
+        });
+
+        const json = await response.json();
+
+        if (!response.ok) {
+            return console.log(json.error)
+        }
+
+        if (response.ok) {
+            setMessage("Email changed successfully.");
+            formDispatch({type: "CLOSE"});
+            setIsDone(true);
+            setTimeout(() => {
+            setIsDone(false);
+            }, 2000);
+        }
     }
 
     return (
@@ -129,14 +166,15 @@ function UserSettings() {
                 </div>
 
                 <div>
-                    <div className='flex items-center gap-2'>
+                    <div className='flex items-center gap-2' onClick={() => formDispatch({type: "PASSWORD"})}>
                         <BsKeyFill size={20} />
                         <li className={`cursor-pointer`}>Change Password</li>
                     </div>
                     {
                         state.password && (
-                            <form className='flex gap-2 bg-primary w-80 p-4 rounded-lg mt-5'>
-                                <input className='outline-none border-none rounded px-2 py-1' placeholder='Enter new password...' />
+                            <form onSubmit={handleChangePassword} className='flex gap-2 bg-primary w-80 p-4 rounded-lg mt-5'>
+                                <input className='outline-none border-none rounded px-2 py-1' placeholder='Enter new password...'
+                                value={password} onChange={e => setPassword(e.target.value)} />
                                 <button title='Done'><MdOutlineFileDownloadDone size={23} color="white" /></button>
                             </form>
                         )
@@ -144,14 +182,15 @@ function UserSettings() {
                 </div>
 
                 <div>
-                   <div className='flex items-center gap-2'>
+                   <div className='flex items-center gap-2' onClick={() => formDispatch({type: "EMAIL"})}>
                         <MdEmail size={20} />
                         <li className={`cursor-pointer`}>Change Email Address</li>
                    </div>
                    {
                         state.email && (
-                            <form className='flex gap-2 bg-primary w-80 p-4 rounded-lg mt-5'>
-                                <input className='outline-none border-none rounded px-2 py-1' placeholder='Enter new email...' />
+                            <form onSubmit={handleChangeEmail} className='flex gap-2 bg-primary w-80 p-4 rounded-lg mt-5'>
+                                <input className='outline-none border-none rounded px-2 py-1' placeholder='Enter new email...'
+                                value={email} onChange={e => setEmail(e.target.value)} type="email" />
                                 <button title='Done'><MdOutlineFileDownloadDone size={23} color="white" /></button>
                             </form>
                         )
@@ -190,7 +229,7 @@ function UserSettings() {
             isDone && (
                 <div className='fixed bottom-8 border border-l-green-500 border-l-2 animate-bounce timing rounded-md py-3 px-6 left-[50%] -translate-x-[50%] flex items-center gap-2 bg-white shadow-2xl'>
                     <div className='bg-green-500 rounded-full p-1 text-white'><MdDone /></div>
-                    <div>LogIn again to see the reflection.</div>
+                    <div>{ message }</div>
                 </div>
             )
           }
