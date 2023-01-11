@@ -134,7 +134,7 @@ function Login() {
                     }
 
                     <div className='text-center text-white text-sm'>
-                        <p>Already have an account? <Link to="/register" className='text-orange-400'>Register</Link></p>
+                        <p>Already have an account? <Link to="/register" className='text-orange-400 font-bold'>Register</Link></p>
                     </div>
                 </form>
             </div>
