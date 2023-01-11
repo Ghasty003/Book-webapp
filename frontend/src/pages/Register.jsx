@@ -16,6 +16,7 @@ function Register() {
 
     const [seePass, setSeePass] = useState(false);
     const [err, setErr] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const passwordInput = useRef("");
     const emailInput = useRef("");
     const usernameInput = useRef("");
@@ -92,7 +93,8 @@ function Register() {
     }, []);
 
     const handleRegister = async (e) => {
-        e.preventDefault()
+        e.preventDefault();
+        setIsLoading(true);
 
         const response = await fetch("http://localhost:4000/api/users/signup", {
             method: "POST",
@@ -105,7 +107,8 @@ function Register() {
 
         if (!response.ok) {
             console.log(json.error)
-            return setErr(json.error)
+            setErr(json.error)
+            setIsLoading(false);
         }
 
         if (response.ok) {
@@ -113,6 +116,7 @@ function Register() {
             setPassword("");
             setUserName("");
             setErr("");
+            setIsLoading(false);
 
             dispatch({type: "LOGIN", payload: json});
             localStorage.setItem("user", JSON.stringify(json));
@@ -144,7 +148,7 @@ function Register() {
                     </div>
                     
                     <div className='flex justify-center items-center my-6'>
-                        <button className='bg-orange-400 text-white w-[200px] p-2 rounded-xl text-center'>Register</button>
+                        <button disabled={isLoading} className='bg-orange-400 text-white w-[200px] p-2 rounded-xl text-center'>{isLoading ? "Registering" : "Register" }</button>
                     </div>
 
                     {
