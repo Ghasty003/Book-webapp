@@ -51,23 +51,23 @@ function Nav() {
     useEffect(() => {
         document.addEventListener("click", (e) => {
             if (!div.current.contains(e.target) && 
-                !div.current.classList.contains("mobile:-left-1/2")
+                !div.current.classList.contains("mobile:-left-3/4")
                 && !open.current.contains(e.target)
             ) {
                 div.current.animate(navBarSlideIn, navBarAnimationOption);
-                div.current.classList.add("mobile:-left-1/2");
+                div.current.classList.add("mobile:-left-3/4");
             }
         })
     }, []);
 
     const closeNav = () => {
         div.current.animate(navBarSlideIn, navBarAnimationOption);
-        div.current.classList.add("mobile:-left-1/2");
+        div.current.classList.add("mobile:-left-3/4");
     }
 
     const openNav = () => {
         div.current.animate(navBarSlideOut, navBarAnimationOption);
-        div.current.classList.replace("mobile:-left-1/2", "mobile:left-0");
+        div.current.classList.replace("mobile:-left-3/4", "mobile:left-0");
     }
 
     return (
@@ -76,9 +76,9 @@ function Nav() {
 
             <button ref={open} onClick={openNav} className='absolute right-10 hidden mobile:block'><FaBars size={25} /></button>
 
-            <div ref={div} className='flex justify-around lg:w-4/5 items-center small:w-3/4 mobile:-left-1/2 mobile:fixed mobile:top-0 mobile:bg-primary 
+            <div ref={div} className='flex justify-around lg:w-4/5 items-center mobile:w-3/4 mobile:-left-3/4 mobile:fixed mobile:top-0 mobile:bg-primary 
                 mobile:flex-col mobile:z-10 mobile:h-screen mobile:justify-center 
-                mobile:items-start mobile:pl-5 mobile:w-1/2 mobile:drop-shadow-2xl'>
+                mobile:items-start mobile:pl-5 mobile:drop-shadow-2xl'>
 
                     <button onClick={closeNav} className='absolute right-10 top-16 hidden mobile:block'><FaTimes size={25} /></button>
 
