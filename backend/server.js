@@ -16,10 +16,10 @@ app.use("/api/users", userRoute);
 app.use("/api/users/collection", userBooksRoute);
 
 mongoose
-  .connect("mongodb://0.0.0.0:27017/books")
+  .connect(process.env.DB_URI)
   .then(() => {
-    app.listen(4000, () => {
-      console.log("connected to db & listening on port 4000");
+    app.listen(process.env.PORT, () => {
+      console.log("connected to db & listening on port", process.env.PORT);
     });
   })
   .catch((error) => {
