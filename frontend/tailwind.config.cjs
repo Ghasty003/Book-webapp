@@ -8,7 +8,6 @@ module.exports = {
       },
       screens: {
         mobile: { max: "785px" },
-        small: { max: "480px" },
       },
     },
   },
