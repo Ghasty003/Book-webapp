@@ -30,17 +30,22 @@ function Nav() {
     }
 
     return (
-        <nav className='flex justify-between items-center py-5 px-10 bg-primary text-white'>
+        <nav className='flex gap-10 items-center py-5 px-10 bg-primary text-white'>
             <h2 className='text-xl'>Admin Control</h2>
 
-            <ul className='flex'>
-                <CustomLink to="/admin" children="Display Books" />
-                <CustomLink to="/admin/addbooks" children="Add Books" />
-                <CustomLink to="/admin/deletebooks" children="Delete Books" />
-                <CustomLink to="/admin/allusers" children="Display Users" />
-            </ul>
+            <div className='flex justify-around lg:w-4/5 items-center'>
+                <ul className='flex'>
+                    <CustomLink to="/admin" children="Display Books" />
+                    <CustomLink to="/admin/addbooks" children="Add Books" />
+                    <CustomLink to="/admin/deletebooks" children="Delete Books" />
+                    <CustomLink to="/admin/allusers" children="Display Users" />
+                </ul>
 
-            <button onClick={handleLogout} className='bg-red-300 px-5 py-2 rounded-lg shadow-2xl drop-shadow-2xl duration-200 active:scale-90'>Logout</button>
+                <button onClick={handleLogout} 
+                    className='bg-red-300 px-5 py-2 rounded-lg shadow-2xl drop-shadow-2xl duration-200 active:scale-90'>
+                    Logout
+                </button>
+            </div>
         </nav>
     );
 }
