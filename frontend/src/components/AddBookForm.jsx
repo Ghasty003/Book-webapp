@@ -100,7 +100,7 @@ function AddBookForm() {
                     }
                     
                     <div className='flex justify-center items-center my-6'>
-                        <button className='bg-orange-400 text-white w-[200px] p-2 rounded-xl text-center'>
+                        <button disabled={isLoading} className='bg-orange-400 text-white w-[200px] p-2 rounded-xl text-center'>
                             {isLoading ? "Loading..." : "Add Book"}
                         </button>
                     </div>
