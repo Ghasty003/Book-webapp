@@ -36,7 +36,6 @@ function Nav() {
             <ul className='flex'>
                 <CustomLink to="/admin" children="Display Books" />
                 <CustomLink to="/admin/addbooks" children="Add Books" />
-                <CustomLink to="/admin/updatebooks" children="Update Books" />
                 <CustomLink to="/admin/deletebooks" children="Delete Books" />
                 <CustomLink to="/admin/allusers" children="Display Users" />
             </ul>
