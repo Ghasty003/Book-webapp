@@ -122,7 +122,7 @@ function Register() {
     return (
         <div className='flex justify-center items-center py-16'>
             <div className='bg-primary relative mobile:w-80 sm:w-[400px] h-[450px] shadow-2xl flex flex-col items-center rounded-2xl p-5'>
-                <h2>Register your account.</h2>
+                <h2 className='text-white text-xl'>Register your account.</h2>
                 <form className='w-full mt-4 relative' onSubmit={handleRegister}>
                     <div className='flex justify-between z-0 items-center pr-3 relative w-[85%] m-auto border border-gray rounded-md my-4 overflow-hidden'>
                         <input ref={usernameInput} className='w-[90%] outline-none p-2' type="text" required value={userName} onChange={e => setUserName(e.target.value)} />
@@ -155,7 +155,7 @@ function Register() {
                         )
                     }
 
-                    <div className='text-center text-sm'>
+                    <div className='text-center text-white text-sm'>
                         <p>Already have an account? <Link to="/login" className='text-orange-400'>Login</Link></p>
                     </div>
                 </form>
