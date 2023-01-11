@@ -148,7 +148,7 @@ function UserSettings() {
             
             <h1 className='text-center text-2xl font-bold mt-10'>Hi, {user.userName}</h1>
 
-            <ul className='flex flex-col gap-6 ml-44 mt-14'>
+            <ul className='flex flex-col p-4 w-fit m-auto items-start gap-6 mt-14'>
                 <div>
                     <div className='flex items-center gap-2' onClick={() => formDispatch({type: "USERNAME"})}>
                         <FaUser size={20} />
