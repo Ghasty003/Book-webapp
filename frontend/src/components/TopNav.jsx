@@ -12,7 +12,7 @@ const CustomLink = ({ to, children }) => {
     const isActive = useMatch({path: resolvedPath.pathname, end: true})
 
     return (
-        <div className='relative mx-4 text-xl px-4'>
+        <div className='relative text-base sm:mx-4 sm:text-xl sm:px-4'>
             <div className='flex items-center gap-1'>
                 { to === "/" ? <BsFillBookFill /> : to === "/collection" ? <BsCollectionFill /> : <RiUserSettingsLine />}
                 <Link to={to}>
@@ -38,13 +38,13 @@ function TopNav() {
     
 
     return (
-        <nav className='bg-primary p-5'>
+        <nav className='bg-primary mobile:py-5 mobile:px-2 sm:p-5'>
             <div className='flex justify-between px-8 items-center text-white'>
                 <h1 className='text-xl'>Book Web</h1>
                 <button onClick={handleLogout} className='bg-red-300 px-5 text-sm py-2 rounded-lg shadow-2xl drop-shadow-2xl duration-200 active:scale-90'>Logout</button>
             </div>
 
-            <ul className='flex justify-around px-10 mt-10 text-white'>
+            <ul className='flex justify-around sm:px-10 mt-10 text-white'>
                 <CustomLink to="/" children="Library" />
                 <CustomLink to="/collection" children="Collection" />
                 <CustomLink to="/settings" children="Settings" />
