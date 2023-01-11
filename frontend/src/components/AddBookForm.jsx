@@ -24,6 +24,7 @@ function AddBookForm() {
     const [err, setErr] = useState(null);
     const [isUploaded, setIsUploaded] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+    const [emptyField, setEmptyField] = useState([]);
 
     const handleUpload = async (e) => {
         const file = e.target.files[0];
@@ -48,7 +49,8 @@ function AddBookForm() {
 
         if (!response.ok) {
             setIsLoading(false);
-            return setErr(json.error);
+            setErr(json.error);
+            setEmptyField(json.emptyField);
         }
 
         if (response.ok) {
@@ -57,6 +59,7 @@ function AddBookForm() {
            setBookName("");
            setImage("");
            setIsLoading(false);
+           setEmptyField([]);
         }
     }
 
@@ -67,7 +70,7 @@ function AddBookForm() {
                 <form className='w-full mt-4 relative' onSubmit={handleSubmit}>
                     <div className='flex flex-col justify-center items-start gap-2 relative w-[85%] m-auto my-4'>
                         <label className='text-white' htmlFor="author">Author name</label>
-                        <input id='author' className='w-full outline-none p-2 border-none rounded-xl' type="text" value={authorName} onChange={e => setAuthorName(e.target.value)} />
+                        <input id='author' className={`${emptyField.includes("authorName") ? "border border-solid" : "border-none"} w-full outline-none p-2  rounded-xl`} type="text" value={authorName} onChange={e => setAuthorName(e.target.value)} />
                     </div>
 
                     <div className='flex flex-col justify-center items-start gap-2 relative w-[85%] m-auto my-4'>
