@@ -156,7 +156,7 @@ function Register() {
                     }
 
                     <div className='text-center text-white text-sm'>
-                        <p>Already have an account? <Link to="/login" className='text-orange-400'>Login</Link></p>
+                        <p>Already have an account? <Link to="/login" className='text-orange-400 font-bold'>Login</Link></p>
                     </div>
                 </form>
             </div>
