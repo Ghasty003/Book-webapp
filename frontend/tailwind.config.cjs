@@ -6,9 +6,9 @@ module.exports = {
       backgroundColor: {
         primary: "#E91E63",
       },
-    },
-    screens: {
-      mobile: { max: "785px" },
+      screens: {
+        mobile: { max: "785px" },
+      },
     },
   },
   plugins: [],
