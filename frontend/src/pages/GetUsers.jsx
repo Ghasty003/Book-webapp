@@ -19,7 +19,7 @@ function GetUsers() {
 
     useEffect(() => {
         const fetchUsers = async () => {
-            const response = await fetch("http://localhost:4000/api/users/getUsers");
+            const response = await fetch("https://book-webapp.onrender.com/api/users/getUsers");
             const json = await response.json();
 
             if (!response.ok) {
