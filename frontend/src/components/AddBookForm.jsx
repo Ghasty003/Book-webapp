@@ -65,7 +65,7 @@ function AddBookForm() {
 
     return (
         <div className='flex justify-center items-center py-16'>
-            <div className='bg-primary  relative w-[400px] h-fit shadow-2xl flex flex-col items-center rounded-2xl p-5'>
+            <div className='bg-primary relative w-[300px] sm:w-[400px] h-fit shadow-2xl flex flex-col items-center rounded-2xl p-5'>
                 <h2 className='text-white text-xl'>Add New Book</h2>
                 <form className='w-full mt-4 relative' onSubmit={handleSubmit}>
                     <div className='flex flex-col justify-center items-start gap-2 relative w-[85%] m-auto my-4'>
