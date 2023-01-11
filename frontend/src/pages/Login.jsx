@@ -104,7 +104,7 @@ function Login() {
 
     return (
         <div className='flex justify-center items-center py-16'>
-            <div className='bg-primary  relative w-[400px] h-[400px] shadow-2xl flex flex-col items-center rounded-2xl p-5'>
+            <div className='bg-primary relative mobile:w-80 sm:w-[400px] h-[400px] shadow-2xl flex flex-col items-center rounded-2xl p-5'>
                 <h2>Login to your account.</h2>
                 <form className='w-full mt-4 relative' onSubmit={handleRegister}>
                     <div className='flex justify-between items-center pr-3 relative w-[85%] m-auto border border-gray rounded-md my-4 overflow-hidden'>
