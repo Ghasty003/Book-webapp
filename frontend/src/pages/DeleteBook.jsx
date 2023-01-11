@@ -9,7 +9,7 @@ import { AiFillDelete } from "react-icons/ai";
 const Book = ({ book, setBookQuery, bookQuery }) => {
 
     const handleDelete = async () => {
-        const response = await fetch("http://localhost:4000/api/books/" + book._id , {
+        const response = await fetch("https://book-webapp.onrender.com/api/books/" + book._id , {
             method: "DELETE",
         });
 
