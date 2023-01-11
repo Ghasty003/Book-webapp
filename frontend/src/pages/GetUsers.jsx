@@ -40,7 +40,7 @@ function GetUsers() {
 
             <h1 className='text-center text-2xl font-bold mt-10'>All Users</h1>
 
-            <div className='mt-10 w-96 mx-auto'>
+            <div className='mt-10 w-80 sm:w-96 mx-auto'>
                 <div className='flex justify-between'>
                     <p className='font-bold text-2xl'>Email</p>
                     <p className='font-bold text-2xl'>Username</p>
