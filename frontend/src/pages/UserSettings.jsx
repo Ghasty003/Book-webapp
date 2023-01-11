@@ -205,7 +205,7 @@ function UserSettings() {
 
            {
             showMessage && (
-                <div className='fixed top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4 text-center bg-yellow-100 py-6 px-10 shadow-xl rounded-lg'>
+                <div className='fixed top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4 text-center bg-yellow-100 w-80 py-6 px-10 shadow-xl rounded-lg'>
                     <h2 className='font-bold text-xl my-4'>Are you sure you want to delete account?</h2>
                     <p className='my-2 font-bold'>This action is irreversible</p>
                     <div className='flex gap-4 justify-end mt-4'>
