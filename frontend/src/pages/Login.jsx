@@ -17,7 +17,6 @@ function Login() {
     const [err, setErr] = useState(false);
     const passwordInput = useRef("");
     const emailInput = useRef("");
-    const usernameInput = useRef("");
     const p1 = useRef("");
     const p2 = useRef("");
 
