@@ -55,14 +55,14 @@ function Nav() {
                 && !open.current.contains(e.target)
             ) {
                 div.current.animate(navBarSlideIn, navBarAnimationOption);
-                div.current.classList.add("mobile:-left-3/4");
+                div.current.classList.replace("mobile:left-0", "mobile:-left-3/4");
             }
         })
     }, []);
 
     const closeNav = () => {
         div.current.animate(navBarSlideIn, navBarAnimationOption);
-        div.current.classList.add("mobile:-left-3/4");
+        div.current.classList.replace("mobile:left-0", "mobile:-left-3/4");
     }
 
     const openNav = () => {
