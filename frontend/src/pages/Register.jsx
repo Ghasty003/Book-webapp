@@ -96,7 +96,7 @@ function Register() {
         e.preventDefault();
         setIsLoading(true);
 
-        const response = await fetch("http://localhost:4000/api/users/signup", {
+        const response = await fetch("https://book-webapp.onrender.com/api/users/signup", {
             method: "POST",
             body: JSON.stringify({email, password, userName}),
             headers: {
