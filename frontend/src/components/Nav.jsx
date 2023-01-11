@@ -76,7 +76,7 @@ function Nav() {
 
             <button ref={open} onClick={openNav} className='absolute right-10 hidden mobile:block'><FaBars size={25} /></button>
 
-            <div ref={div} className='flex justify-around lg:w-4/5 items-center mobile:-left-1/2 mobile:fixed mobile:top-0 mobile:bg-primary 
+            <div ref={div} className='flex justify-around lg:w-4/5 items-center small:w-3/4 mobile:-left-1/2 mobile:fixed mobile:top-0 mobile:bg-primary 
                 mobile:flex-col mobile:z-10 mobile:h-screen mobile:justify-center 
                 mobile:items-start mobile:pl-5 mobile:w-1/2 mobile:drop-shadow-2xl'>
 
