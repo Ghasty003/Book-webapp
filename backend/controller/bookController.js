@@ -33,6 +33,24 @@ const getBook = async (req, res) => {
 const createBook = async (req, res) => {
   const { authorName, bookName, image } = req.body;
 
+  const emptyField = [];
+
+  if (!authorName) {
+    emptyField.push("authorName");
+  }
+  if (!bookName) {
+    emptyField.push("bookName");
+  }
+  if (!image) {
+    emptyField.push("image");
+  }
+
+  if (emptyField.length > 0) {
+    return res
+      .status(400)
+      .json({ error: "All fields must be filled.", emptyField });
+  }
+
   try {
     const exists = await Book.findOne({ authorName, bookName, image });
 
