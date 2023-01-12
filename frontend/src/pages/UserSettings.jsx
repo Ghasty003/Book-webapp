@@ -66,7 +66,7 @@ function UserSettings() {
 
     function deleteUser() {
         return new Promise( async (resolve, reject) => {
-         const response = await fetch("http://localhost:4000/api/users/"+ user.userId, {
+         const response = await fetch("https://book-webapp.onrender.com/api/users/"+ user.userId, {
              method: "DELETE"
          });
  
@@ -85,7 +85,7 @@ function UserSettings() {
     const handleUsernameChange = async(e) => {
        e.preventDefault();
 
-       const response = await fetch("http://localhost:4000/api/users/update/"+ user.userId, {
+       const response = await fetch("https://book-webapp.onrender.com/api/users/update/"+ user.userId, {
         method: "PATCH",
         headers: {
             "Content-Type": "application/json"
@@ -118,7 +118,7 @@ function UserSettings() {
     const handleChangeEmail = async (e) => {
         e.preventDefault();
 
-        const response = await fetch("http://localhost:4000/api/users/update/"+ user.userId, {
+        const response = await fetch("https://book-webapp.onrender.com/api/users/update/"+ user.userId, {
             method: 'PATCH',
             headers: {
                 "Content-Type": "application/json"
