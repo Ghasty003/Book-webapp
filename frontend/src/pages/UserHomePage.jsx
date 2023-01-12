@@ -98,7 +98,7 @@ function UserHomePage() {
 
           {
             isAdded && (
-                <div className='fixed bottom-8 border border-l-green-500 border-l-2 animate-bounce timing rounded-md py-3 px-6 left-[50%] -translate-x-[50%] flex items-center gap-2 bg-white shadow-2xl'>
+                <div className='fixed bottom-8 mobile:w-2/3 mobile:mx-auto border border-l-green-500 border-l-2 animate-bounce timing rounded-md py-3 px-6 mobile:px-2 mobile:left-1/4 left-[50%] -translate-x-[50%] flex items-center gap-2 bg-white shadow-2xl'>
                     <div className='bg-green-500 rounded-full p-1 text-white'><MdDone /></div>
                     <div>Book added to collection</div>
                 </div>
@@ -107,9 +107,9 @@ function UserHomePage() {
 
           {
             exists && (
-                <div className='fixed bottom-8 border border-l-red-500 border-l-2 animate-bounce timing rounded-md py-3 px-6 left-[50%] -translate-x-[50%] flex items-center gap-2 bg-white shadow-2xl'>
+                <div className='fixed bottom-8 mobile:w-2/3 mobile:mx-auto border border-l-red-500 border-l-2 animate-bounce timing rounded-md py-3 px-6 mobile:px-4 mobile:left-1/4 left-[50%] -translate-x-[50%] flex items-center gap-2 bg-white shadow-2xl'>
                     <div className='bg-red-500 rounded-full p-1 text-red-500'><FcDeleteRow /></div>
-                    <div>{ exists }</div>
+                    <div className='mobile:text-sm'>{ exists }</div>
                 </div>
             )
           }
