@@ -78,7 +78,7 @@ function Nav() {
 
             <div ref={div} className='flex justify-around lg:w-4/5 items-center mobile:w-3/4 mobile:-left-3/4 mobile:fixed mobile:top-0 mobile:bg-primary 
                 mobile:flex-col mobile:z-10 mobile:h-screen mobile:justify-center 
-                mobile:items-start mobile:pl-5 mobile:drop-shadow-2xl'>
+                mobile:items-start mobile:pl-5 mobile:overflow-x-auto mobile:drop-shadow-2xl'>
 
                     <button onClick={closeNav} className='absolute right-10 top-16 hidden mobile:block'><FaTimes size={25} /></button>
 
@@ -91,7 +91,7 @@ function Nav() {
 
                 <button onClick={handleLogout} 
                     className='bg-red-300 px-5 py-2 rounded-lg shadow-2xl drop-shadow-2xl duration-200 active:scale-90
-                    mobile:absolute mobile:bottom-10'>
+                    mobile:absolute mobile:bottom-20'>
                     Logout
                 </button>
             </div>
