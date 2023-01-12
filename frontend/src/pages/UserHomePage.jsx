@@ -15,7 +15,7 @@ function Book({ book, setIsAdded, setExists }) {
        const bookName = book.bookName;
        const image = book.image;
 
-       const response = await fetch("http://localhost:4000/api/users/collection", {
+       const response = await fetch("https://book-webapp.onrender.com/api/users/collection", {
         method: "POST",
         body: JSON.stringify({authorName, bookName, image}),
         headers: {
@@ -67,7 +67,7 @@ function UserHomePage() {
 
     useEffect(() => {
         const fetchBooks = async () => {
-            const response = await fetch("http://localhost:4000/api/books");
+            const response = await fetch("https://book-webapp.onrender.com/api/books");
             const json = await response.json();
 
             if (!response.ok) {
