@@ -15,7 +15,7 @@ function Book({ book }) {
     const { user } = useContext(AuthContext);
 
     const handleRemove = async () => {
-        const response = await fetch("http://localhost:4000/api/users/collection/" + book._id, {
+        const response = await fetch("https://book-webapp.onrender.com/api/users/collection/" + book._id, {
             method: "DELETE",
             headers: {
                 "Authorization": `Bearer ${user.token}`
@@ -57,7 +57,7 @@ function UserCollection() {
 
     useEffect(() => {
         const fetchUserBooks = async () => {
-            const response = await fetch("http://localhost:4000/api/users/collection", {
+            const response = await fetch("https://book-webapp.onrender.com/api/users/collection", {
                 headers: {
                     "Authorization": `Bearer ${user.token}`
                 }
